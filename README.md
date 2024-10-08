@@ -18,14 +18,15 @@
  	- Можно раскомментировать создание отдельных папок, где будут лежать соответствующие графики для всех сигналов. Тогда необходимо также в самих программах раскомментировать сохранение графиков в эти отдельные папки
 
 3. Запустить
-	source ~/.bashrc
-	
- 	conda activate /s/ls4/groups/g0126/conda_envs/nest
-	
- 	module load git
-	
- 	module load openmpi
-	
- 	cd [...]/Paugam-Moisy
-	
- 	sh run_all.sh
+
+   	source ~/.bashrc
+
+	conda activate /s/ls4/groups/g0126/conda_envs/nest
+
+	module load git
+
+	module load openmpi
+
+	cd [...]/Paugam-Moisy
+
+	sh run_all.sh
