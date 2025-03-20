@@ -166,12 +166,6 @@ class PaugamMoisyNetwork(Generic_spiking_transformer):
             self.network_parameters['number_of_exc_neurons'],
             params=neuron_parameters
         )
-        inh_reservoir_neuron_ids = []#nest.Create(
-        #     'iaf_psc_delta',
-        #     self.network_parameters['number_of_inh_neurons'],
-        #     params=neuron_parameters
-        # )
-
         spike_recorder_id = nest.Create('spike_recorder')
         nest.Connect(exc_reservoir_neuron_ids, spike_recorder_id, conn_spec='all_to_all')
 
@@ -337,29 +331,7 @@ class PaugamMoisyNetwork(Generic_spiking_transformer):
         n_epochs = self.network_parameters['epochs'] if not testing_mode else 1
 
         progress_bar = tqdm(total=n_epochs * len(A))
-
-        # exp = self.experiment
-        # if(exp in [1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.8]):
-        #     for epoch in range(n_epochs):
-
-        #         for x in X:
-        #             spike_times = (
-        #                 nest.biological_time
-        #                 + encode_data_to_spike_times(x, self.network_parameters)
-        #             )
-
-        #             # The simulation itself.
-        #             nest.SetStatus(
-        #                 self.network_objects.generators_ids,
-        #                 'spike_times',
-        #                 spike_times
-        #             )
-
-        #             nest.Simulate(self.network_parameters['intervector_duration'])
-        #             progress_bar.update()   
-
-        # if(exp in [1.9, 1.7,2.0,2.1,2.2,2.3,2.4,2.5,2.6,3.0,3.1,3.2,3.3,3.4,3.5,3.6,4.0,4.1,4.2,4.3,4.4,4.5,4.6,5.0,5.1,5.2,5.3,5.4,5.5,5.6]):  
-        
+    
         for epoch in range(n_epochs):
 
             for x in A:
