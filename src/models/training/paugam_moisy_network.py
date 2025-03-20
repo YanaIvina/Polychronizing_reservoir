@@ -203,11 +203,7 @@ class PaugamMoisyNetwork(Generic_spiking_transformer):
         nD = self.nD
         # self.r= exc_reservoir_neuron_ids[list(nB)]
 
-        synapse = {
-            'synapse_model': 'static_synapse',
-            'weight': 1.0,
-            'delay': 0.5,
-        }
+        synapse = self.synapse_parameters
         internal_indegree_and_outdegree = 3
         neuron_ids = exc_reservoir_neuron_ids
 
@@ -273,35 +269,6 @@ class PaugamMoisyNetwork(Generic_spiking_transformer):
                     conn_spec='one_to_one',
                     syn_spec= self.synapse_parameters
                 )
-
-##################################################################
-
-        # nest.Connect(
-        #     pre=inh_reservoir_neuron_ids,
-        #     post=exc_reservoir_neuron_ids + inh_reservoir_neuron_ids,
-        #     conn_spec={
-        #         'rule': 'pairwise_bernoulli',
-        #         'p': 0.3,
-        #         'allow_autapses': False,
-        #     },
-        #     syn_spec={
-        #         'synapse_model': 'stdp_paugam_moisy_synapse',
-        #         'weight': -0.5,
-        #         'Wmax': -1.,
-        #     }
-        # )
-
-        # nest.Connect(exc_reservoir_neuron_ids, spike_recorder_id, conn_spec='all_to_all')
-        # nest.Connect(
-        #     (
-        #         input_neuron_ids_1
-        #         + exc_reservoir_neuron_ids
-        #     ),
-        #     spike_recorder_id,
-        #     conn_spec='all_to_all'
-        # )
-##################################################################
-
         # Now that all connections have been created,
         # request their descriptors from NEST.
         all_connection_descriptors = {
