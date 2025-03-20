@@ -195,9 +195,11 @@ class PaugamMoisyNetwork(Generic_spiking_transformer):
         nB = self.nB
         nC = self.nC
         nD = self.nD
-        # self.r= exc_reservoir_neuron_ids[list(nB)]
-
-        synapse = self.synapse_parameters
+        synapse = {
+            'synapse_model': 'static_synapse',
+            'weight': 1.0,
+            'delay': 0.5,
+        }
         internal_indegree_and_outdegree = 3
         neuron_ids = exc_reservoir_neuron_ids
 
